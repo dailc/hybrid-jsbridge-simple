@@ -1,0 +1,38 @@
+<!-- 
+        作者：
+        时间：
+        描述：
+-->
+<!DOCTYPE html >
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<title>JSBridge示例</title>
+	</head>
+
+	<body>
+		<h1>helloworld</h1>
+		<button id="btn-nativeFunc">调用原生方法</button>
+		
+		<button id="btn-notifyNativecallH5">通知原生调用注册的H5方法</button>
+	</body>
+	<script type="text/javascript" src="JSbridge.js" ></script>
+	<script>
+		window.onload = function() {
+			
+			document.getElementById('btn-nativeFunc').addEventListener('click',function(){
+				jsapi.app.testNativeFunc('测试方法',function(res){
+					alert('成功调用方法，回调参数:'+JSON.stringify(res));                     
+				});
+			});
+			
+			document.getElementById('btn-notifyNativecallH5').addEventListener('click',function(){
+				//内部已经默认注册了 testH5Func方法的
+				jsapi.app.callH5Func('testH5Func');
+			});
+		};
+	</script>
+
+</html>
